@@ -27,16 +27,6 @@ except ImportError:
 
     sys.exit(1)
 
-# Handle command-line arguments
-parser = argparse.ArgumentParser(description='Terminal Glyph Patcher')
-
-parser.add_argument('fonts', help='font file to patch', metavar='font', nargs='+')
-parser.add_argument('--no-rename', help='don\'t add " with Terminal Glyphs" to the font name', default=True, action='store_false', dest='rename')
-parser.add_argument('--fix-mono', help='fixes some mono-fonts which have glyphs of 0 widths', default=False, action='store_true', dest='fixmono')
-parser.add_argument('--fix-win', help='modifies font names such that Windows correctly recognizes font families', default=False, action='store_true', dest='fixwin')
-
-args = parser.parse_args()
-
 symbols = [
     # Right/left-aligned glyphs will have their advance width reduced in order to overlap the next glyph slightly
     {'unicode': 0xe0b0, 'align': 'l', 'stretch': 'xy', 'overlap': 0.05, 'path': 'svg/arrow_right.svg'     },
@@ -57,8 +47,26 @@ symbols = [
     {'unicode': 0xe0bd, 'align': 'l', 'stretch': 'xy', 'overlap': 0.05, 'path': 'svg/slant_left_top_thin.svg'    },
     {'unicode': 0xe0be, 'align': 'r', 'stretch': 'xy', 'overlap': 0.01, 'path': 'svg/slant_right_top.svg'        },
     {'unicode': 0xe0bf, 'align': 'r', 'stretch': 'xy', 'overlap': 0.01, 'path': 'svg/slant_right_top_thin.svg'   },
+
+    {'unicode': 0xe0c0, 'align': 'c', 'stretch': 'xy', 'overlap': 0   , 'path': 'svg/cross.svg'      },
+    {'unicode': 0xe0c1, 'align': 'l', 'stretch': 'xy', 'overlap': 0.05, 'path': 'svg/cross_left.svg' },
+    {'unicode': 0xe0c2, 'align': 'r', 'stretch': 'xy', 'overlap': 0.01, 'path': 'svg/cross_right.svg'},
+    {'unicode': 0xe0c3, 'align': 'c', 'stretch': 'xy', 'overlap': 0   , 'path': 'svg/cross_thin.svg' },
+
+    {'unicode': 0xe0c4, 'align': 'c', 'stretch': 'xy', 'overlap': 0   , 'path': 'svg/diamond.svg'     },
+    {'unicode': 0xe0c5, 'align': 'c', 'stretch': 'xy', 'overlap': 0   , 'path': 'svg/diamond_thin.svg'},
 ]
 y_scale = 1.02
+
+# Handle command-line arguments
+parser = argparse.ArgumentParser(description='Terminal Glyph Patcher')
+
+parser.add_argument('fonts', help='font file to patch', metavar='font', nargs='+')
+parser.add_argument('--no-rename', help='don\'t add " with Terminal Glyphs" to the font name', default=True, action='store_false', dest='rename')
+parser.add_argument('--fix-mono', help='fixes some mono-fonts which have glyphs of 0 widths', default=False, action='store_true', dest='fixmono')
+parser.add_argument('--fix-win', help='modifies font names such that Windows correctly recognizes font families', default=False, action='store_true', dest='fixwin')
+
+args = parser.parse_args()
 
 def get_glyph_dim(glyph):
     (xmin, ymin, xmax, ymax) = glyph.boundingBox()
