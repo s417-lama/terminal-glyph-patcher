@@ -43,6 +43,20 @@ symbols = [
     {'unicode': 0xe0b1, 'align': 'l', 'stretch': 'xy', 'overlap': True, 'path': 'svg/arrow_right_thin.svg'},
     {'unicode': 0xe0b2, 'align': 'r', 'stretch': 'xy', 'overlap': True, 'path': 'svg/arrow_left.svg'      },
     {'unicode': 0xe0b3, 'align': 'r', 'stretch': 'xy', 'overlap': True, 'path': 'svg/arrow_left_thin.svg' },
+
+    {'unicode': 0xe0b4, 'align': 'l', 'stretch': 'xy', 'overlap': True, 'path': 'svg/circle_right.svg'     },
+    {'unicode': 0xe0b5, 'align': 'l', 'stretch': 'xy', 'overlap': True, 'path': 'svg/circle_right_thin.svg'},
+    {'unicode': 0xe0b6, 'align': 'r', 'stretch': 'xy', 'overlap': True, 'path': 'svg/circle_left.svg'      },
+    {'unicode': 0xe0b7, 'align': 'r', 'stretch': 'xy', 'overlap': True, 'path': 'svg/circle_left_thin.svg' },
+
+    {'unicode': 0xe0b8, 'align': 'l', 'stretch': 'xy', 'overlap': True, 'path': 'svg/slant_left_bottom.svg'      },
+    {'unicode': 0xe0b9, 'align': 'l', 'stretch': 'xy', 'overlap': True, 'path': 'svg/slant_left_bottom_thin.svg' },
+    {'unicode': 0xe0ba, 'align': 'r', 'stretch': 'xy', 'overlap': True, 'path': 'svg/slant_right_bottom.svg'     },
+    {'unicode': 0xe0bb, 'align': 'r', 'stretch': 'xy', 'overlap': True, 'path': 'svg/slant_right_bottom_thin.svg'},
+    {'unicode': 0xe0bc, 'align': 'l', 'stretch': 'xy', 'overlap': True, 'path': 'svg/slant_left_top.svg'         },
+    {'unicode': 0xe0bd, 'align': 'l', 'stretch': 'xy', 'overlap': True, 'path': 'svg/slant_left_top_thin.svg'    },
+    {'unicode': 0xe0be, 'align': 'r', 'stretch': 'xy', 'overlap': True, 'path': 'svg/slant_right_top.svg'        },
+    {'unicode': 0xe0bf, 'align': 'r', 'stretch': 'xy', 'overlap': True, 'path': 'svg/slant_right_top_thin.svg'   },
 ]
 
 def get_font_dim(font):
