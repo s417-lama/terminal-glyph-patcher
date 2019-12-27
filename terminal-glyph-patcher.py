@@ -39,62 +39,28 @@ args = parser.parse_args()
 
 symbols = [
     # Right/left-aligned glyphs will have their advance width reduced in order to overlap the next glyph slightly
-    {'unicode': 0xe0b0, 'align': 'l', 'stretch': 'xy', 'overlap': True, 'path': 'svg/arrow_right.svg'     },
-    {'unicode': 0xe0b1, 'align': 'l', 'stretch': 'xy', 'overlap': True, 'path': 'svg/arrow_right_thin.svg'},
-    {'unicode': 0xe0b2, 'align': 'r', 'stretch': 'xy', 'overlap': True, 'path': 'svg/arrow_left.svg'      },
-    {'unicode': 0xe0b3, 'align': 'r', 'stretch': 'xy', 'overlap': True, 'path': 'svg/arrow_left_thin.svg' },
+    {'unicode': 0xe0b0, 'align': 'l', 'stretch': 'xy', 'overlap': 0.04, 'path': 'svg/arrow_right.svg'     },
+    {'unicode': 0xe0b1, 'align': 'l', 'stretch': 'xy', 'overlap': 0.04, 'path': 'svg/arrow_right_thin.svg'},
+    {'unicode': 0xe0b2, 'align': 'r', 'stretch': 'xy', 'overlap': 0.01, 'path': 'svg/arrow_left.svg'      },
+    {'unicode': 0xe0b3, 'align': 'r', 'stretch': 'xy', 'overlap': 0.01, 'path': 'svg/arrow_left_thin.svg' },
 
-    {'unicode': 0xe0b4, 'align': 'l', 'stretch': 'xy', 'overlap': True, 'path': 'svg/circle_right.svg'     },
-    {'unicode': 0xe0b5, 'align': 'l', 'stretch': 'xy', 'overlap': True, 'path': 'svg/circle_right_thin.svg'},
-    {'unicode': 0xe0b6, 'align': 'r', 'stretch': 'xy', 'overlap': True, 'path': 'svg/circle_left.svg'      },
-    {'unicode': 0xe0b7, 'align': 'r', 'stretch': 'xy', 'overlap': True, 'path': 'svg/circle_left_thin.svg' },
+    {'unicode': 0xe0b4, 'align': 'l', 'stretch': 'xy', 'overlap': 0.08, 'path': 'svg/circle_right.svg'     },
+    {'unicode': 0xe0b5, 'align': 'l', 'stretch': 'xy', 'overlap': 0.08, 'path': 'svg/circle_right_thin.svg'},
+    {'unicode': 0xe0b6, 'align': 'r', 'stretch': 'xy', 'overlap': 0.01, 'path': 'svg/circle_left.svg'      },
+    {'unicode': 0xe0b7, 'align': 'r', 'stretch': 'xy', 'overlap': 0.01, 'path': 'svg/circle_left_thin.svg' },
 
-    {'unicode': 0xe0b8, 'align': 'l', 'stretch': 'xy', 'overlap': True, 'path': 'svg/slant_left_bottom.svg'      },
-    {'unicode': 0xe0b9, 'align': 'l', 'stretch': 'xy', 'overlap': True, 'path': 'svg/slant_left_bottom_thin.svg' },
-    {'unicode': 0xe0ba, 'align': 'r', 'stretch': 'xy', 'overlap': True, 'path': 'svg/slant_right_bottom.svg'     },
-    {'unicode': 0xe0bb, 'align': 'r', 'stretch': 'xy', 'overlap': True, 'path': 'svg/slant_right_bottom_thin.svg'},
-    {'unicode': 0xe0bc, 'align': 'l', 'stretch': 'xy', 'overlap': True, 'path': 'svg/slant_left_top.svg'         },
-    {'unicode': 0xe0bd, 'align': 'l', 'stretch': 'xy', 'overlap': True, 'path': 'svg/slant_left_top_thin.svg'    },
-    {'unicode': 0xe0be, 'align': 'r', 'stretch': 'xy', 'overlap': True, 'path': 'svg/slant_right_top.svg'        },
-    {'unicode': 0xe0bf, 'align': 'r', 'stretch': 'xy', 'overlap': True, 'path': 'svg/slant_right_top_thin.svg'   },
+    {'unicode': 0xe0b8, 'align': 'l', 'stretch': 'xy', 'overlap': 0.04, 'path': 'svg/slant_left_bottom.svg'      },
+    {'unicode': 0xe0b9, 'align': 'l', 'stretch': 'xy', 'overlap': 0.04, 'path': 'svg/slant_left_bottom_thin.svg' },
+    {'unicode': 0xe0ba, 'align': 'r', 'stretch': 'xy', 'overlap': 0.01, 'path': 'svg/slant_right_bottom.svg'     },
+    {'unicode': 0xe0bb, 'align': 'r', 'stretch': 'xy', 'overlap': 0.01, 'path': 'svg/slant_right_bottom_thin.svg'},
+    {'unicode': 0xe0bc, 'align': 'l', 'stretch': 'xy', 'overlap': 0.04, 'path': 'svg/slant_left_top.svg'         },
+    {'unicode': 0xe0bd, 'align': 'l', 'stretch': 'xy', 'overlap': 0.04, 'path': 'svg/slant_left_top_thin.svg'    },
+    {'unicode': 0xe0be, 'align': 'r', 'stretch': 'xy', 'overlap': 0.01, 'path': 'svg/slant_right_top.svg'        },
+    {'unicode': 0xe0bf, 'align': 'r', 'stretch': 'xy', 'overlap': 0.01, 'path': 'svg/slant_right_top_thin.svg'   },
 ]
-
-def get_font_dim(font):
-    # Initial font dimensions
-    font_dim = {
-        'xmin'  : 0,
-        'ymin'  : -font.descent,
-        'xmax'  : 0,
-        'ymax'  : font.ascent,
-        'width' : 0,
-        'height': 0,
-    }
-
-    # Find the biggest char width and height
-    #
-    # 0x00-0x17f is the Latin Extended-A range
-    # 0x2500-0x2600 is the box drawing range
-    for glyph in range(0x00, 0x17f) + range(0x2500, 0x2600):
-        try:
-            (xmin, ymin, xmax, ymax) = font[glyph].boundingBox()
-        except TypeError:
-            continue
-
-        if font_dim['width'] == 0:
-            font_dim['width'] = font[glyph].width
-
-        if ymin < font_dim['ymin']: font_dim['ymin'] = ymin
-        if ymax > font_dim['ymax']: font_dim['ymax'] = ymax
-        if xmax > font_dim['xmax']: font_dim['xmax'] = xmax
-
-    # Calculate font height
-    font_dim['height'] = abs(font_dim['ymin']) + font_dim['ymax']
-
-    return font_dim
 
 def get_glyph_dim(glyph):
     (xmin, ymin, xmax, ymax) = glyph.boundingBox()
-
     return  {
         'xmin'  : xmin,
         'ymin'  : ymin,
@@ -103,6 +69,18 @@ def get_glyph_dim(glyph):
         'width' : xmax + (-xmin),
         'height': ymax + (-ymin),
     }
+
+def get_font_dim(font):
+    width = font[0x004d].width # character 'M'
+    font_dim = {
+        'xmin'  : 0,
+        'ymin'  : -font.os2_windescent,
+        'xmax'  : width,
+        'ymax'  : font.os2_winascent,
+        'width' : width,
+        'height': font.os2_windescent + font.os2_winascent,
+    }
+    return font_dim
 
 # Patch provided fonts
 for font_path in args.fonts:
@@ -189,8 +167,8 @@ for font_path in args.fonts:
 
         font.transform(align_matrix)
 
-        if symbol['overlap'] is True:
-            overlap_width = font.em / 48
+        if symbol['overlap'] > 0:
+            overlap_width = font_dim['width'] * symbol['overlap']
 
             # Stretch the glyph slightly horizontally if it should overlap
             font.transform(psMat.scale((sym_dim['width'] + overlap_width) / sym_dim['width'], 1))
