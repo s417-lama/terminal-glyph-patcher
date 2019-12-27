@@ -39,8 +39,8 @@ args = parser.parse_args()
 
 symbols = [
     # Right/left-aligned glyphs will have their advance width reduced in order to overlap the next glyph slightly
-    {'unicode': 0xe0b0, 'align': 'l', 'stretch': 'xy', 'overlap': 0.04, 'path': 'svg/arrow_right.svg'     },
-    {'unicode': 0xe0b1, 'align': 'l', 'stretch': 'xy', 'overlap': 0.04, 'path': 'svg/arrow_right_thin.svg'},
+    {'unicode': 0xe0b0, 'align': 'l', 'stretch': 'xy', 'overlap': 0.05, 'path': 'svg/arrow_right.svg'     },
+    {'unicode': 0xe0b1, 'align': 'l', 'stretch': 'xy', 'overlap': 0.05, 'path': 'svg/arrow_right_thin.svg'},
     {'unicode': 0xe0b2, 'align': 'r', 'stretch': 'xy', 'overlap': 0.01, 'path': 'svg/arrow_left.svg'      },
     {'unicode': 0xe0b3, 'align': 'r', 'stretch': 'xy', 'overlap': 0.01, 'path': 'svg/arrow_left_thin.svg' },
 
@@ -49,15 +49,16 @@ symbols = [
     {'unicode': 0xe0b6, 'align': 'r', 'stretch': 'xy', 'overlap': 0.01, 'path': 'svg/circle_left.svg'      },
     {'unicode': 0xe0b7, 'align': 'r', 'stretch': 'xy', 'overlap': 0.01, 'path': 'svg/circle_left_thin.svg' },
 
-    {'unicode': 0xe0b8, 'align': 'l', 'stretch': 'xy', 'overlap': 0.04, 'path': 'svg/slant_left_bottom.svg'      },
-    {'unicode': 0xe0b9, 'align': 'l', 'stretch': 'xy', 'overlap': 0.04, 'path': 'svg/slant_left_bottom_thin.svg' },
+    {'unicode': 0xe0b8, 'align': 'l', 'stretch': 'xy', 'overlap': 0.05, 'path': 'svg/slant_left_bottom.svg'      },
+    {'unicode': 0xe0b9, 'align': 'l', 'stretch': 'xy', 'overlap': 0.05, 'path': 'svg/slant_left_bottom_thin.svg' },
     {'unicode': 0xe0ba, 'align': 'r', 'stretch': 'xy', 'overlap': 0.01, 'path': 'svg/slant_right_bottom.svg'     },
     {'unicode': 0xe0bb, 'align': 'r', 'stretch': 'xy', 'overlap': 0.01, 'path': 'svg/slant_right_bottom_thin.svg'},
-    {'unicode': 0xe0bc, 'align': 'l', 'stretch': 'xy', 'overlap': 0.04, 'path': 'svg/slant_left_top.svg'         },
-    {'unicode': 0xe0bd, 'align': 'l', 'stretch': 'xy', 'overlap': 0.04, 'path': 'svg/slant_left_top_thin.svg'    },
+    {'unicode': 0xe0bc, 'align': 'l', 'stretch': 'xy', 'overlap': 0.05, 'path': 'svg/slant_left_top.svg'         },
+    {'unicode': 0xe0bd, 'align': 'l', 'stretch': 'xy', 'overlap': 0.05, 'path': 'svg/slant_left_top_thin.svg'    },
     {'unicode': 0xe0be, 'align': 'r', 'stretch': 'xy', 'overlap': 0.01, 'path': 'svg/slant_right_top.svg'        },
     {'unicode': 0xe0bf, 'align': 'r', 'stretch': 'xy', 'overlap': 0.01, 'path': 'svg/slant_right_top_thin.svg'   },
 ]
+y_scale = 1.02
 
 def get_glyph_dim(glyph):
     (xmin, ymin, xmax, ymax) = glyph.boundingBox()
@@ -74,11 +75,11 @@ def get_font_dim(font):
     width = font[0x004d].width # character 'M'
     font_dim = {
         'xmin'  : 0,
-        'ymin'  : -font.os2_windescent,
+        'ymin'  : -font.os2_windescent * y_scale,
         'xmax'  : width,
-        'ymax'  : font.os2_winascent,
+        'ymax'  : font.os2_winascent * y_scale,
         'width' : width,
-        'height': font.os2_windescent + font.os2_winascent,
+        'height': (font.os2_windescent + font.os2_winascent) * y_scale,
     }
     return font_dim
 
