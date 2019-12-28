@@ -37,6 +37,44 @@ Then install the patched font to your system, and apply it to your terminal.
 ```
 Then statuslines like the top image should be shown.
 
+## Patch your own glyphs
+
+For now you should modify `terminal-glyph-patcher.py` directly.
+What you should modify is `symbols` list in the source code.
+This list looks like the below.
+
+```python
+{'unicode': 0xe0b0, 'align': 'l', 'stretch': 'xy', 'overlap': 0.05, 'path': 'svg/arrow_right.svg'     },
+{'unicode': 0xe0b1, 'align': 'l', 'stretch': 'xy', 'overlap': 0.05, 'path': 'svg/arrow_right_thin.svg'},
+{'unicode': 0xe0b2, 'align': 'r', 'stretch': 'xy', 'overlap': 0.01, 'path': 'svg/arrow_left.svg'      },
+{'unicode': 0xe0b3, 'align': 'r', 'stretch': 'xy', 'overlap': 0.01, 'path': 'svg/arrow_left_thin.svg' },
+```
+
+------------------------------
+
+#### `unicode` :: int
+Unicode number to be register. If a glyph already exists in the font, it will be overwritten.
+
+#### `align` :: `'l'`, `'r'`, or `'c'`.
+If `l` is set, the glyph is aligned to the left edge. If `r`, it is aligned to the right.
+If `c` is set, the glyph is aligned in the center.
+
+#### `stretch` :: `''`, `'x'`, `'y'`, or `'xy'`.
+If `x` is set, the glyph is expanded to fill up the entire horizontal space. `y` is for the vertical space.
+
+#### `overlap` :: float
+Sometimes there exists a gap between glyphs. To fill it up, `overlap` parameter is used.
+The output glyph width will be `Glyph width * (1 + overlap)`, which means the glyph will be a bit leaked from the normal bounding box.
+If `align` parameter is `l`, the overflow goes to the left side. If `r`, it goes to the right side.
+
+#### `path` :: string
+Path to your SVG file.
+
+------------------------------
+
+For example, `U+E0B0` glyph should align to the left(`align='l'`), and it should fill up the entire glyph space (`stretch='xy'`).
+To fill up the left gap, `overlap` parameter is set to some value (this parameter is decided in an ad-hoc way).
+
 ## Preset Glyphs
 
 The glyphs below are included in `svg/` directory by default.
