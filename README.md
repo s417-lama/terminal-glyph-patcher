@@ -13,7 +13,31 @@ Enjoy your original statusline in the terminal!
     - It is less likely to cause problems related with [ambiguous-width characters](http://www.unicode.org/reports/tr11/tr11-36.html).
 - The position of separator glyphs can be finely adjusted.
 
-# Preset Glyphs
+## Try it
+
+### 1. Clone this repo
+
+```
+git clone https://github.com/s417-lama/terminal-glyph-patcher.git
+```
+
+### 2. Patch your font by using preset glyphs
+
+`python-fontforge` package is required. Install instruction: [Installing FontForge](http://designwithfontforge.com/en-US/Installing_Fontforge.html)
+```
+cd terminal-glyph-patcher
+fontforge -script terminal-glyph-patcher.py /path/to/your/font.ttf
+```
+Then install the patched font to your system, and apply it to your terminal.
+
+### 3. Show statusline
+
+```
+./statusline_test.sh
+```
+Then statuslines like the top image should be shown.
+
+## Preset Glyphs
 
 The glyphs below are included in `svg/` directory by default.
 These glyphs are pure SVG files.
