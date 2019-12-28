@@ -72,7 +72,7 @@ Path to your SVG file.
 
 ------------------------------
 
-For example, `U+E0B0` glyph should align to the left(`align='l'`), and it should fill up the entire glyph space (`stretch='xy'`).
+For example, `U+E0B0` glyph should align to the left (`align='l'`), and it should fill up the entire glyph space (`stretch='xy'`).
 To fill up the left gap, `overlap` parameter is set to some value (this parameter is decided in an ad-hoc way).
 
 ## Preset Glyphs
@@ -90,6 +90,16 @@ Basically it follows the layout convention of [Powerline Extra Symbols](https://
 | ![U+E0B8](https://raw.githubusercontent.com/s417-lama/terminal-glyph-patcher/master/svg/slant_left_bottom.svg?sanitize=true) | ![U+E0B9](https://raw.githubusercontent.com/s417-lama/terminal-glyph-patcher/master/svg/slant_left_bottom_thin.svg?sanitize=true) | ![U+E0BA](https://raw.githubusercontent.com/s417-lama/terminal-glyph-patcher/master/svg/slant_right_bottom.svg?sanitize=true) | ![U+E0BB](https://raw.githubusercontent.com/s417-lama/terminal-glyph-patcher/master/svg/slant_right_bottom_thin.svg?sanitize=true) | ![U+E0BC](https://raw.githubusercontent.com/s417-lama/terminal-glyph-patcher/master/svg/slant_left_top.svg?sanitize=true) | ![U+E0BD](https://raw.githubusercontent.com/s417-lama/terminal-glyph-patcher/master/svg/slant_left_top_thin.svg?sanitize=true) | ![U+E0BE](https://raw.githubusercontent.com/s417-lama/terminal-glyph-patcher/master/svg/slant_right_top.svg?sanitize=true) | ![U+E0BF](https://raw.githubusercontent.com/s417-lama/terminal-glyph-patcher/master/svg/slant_right_top_thin.svg?sanitize=true) |
 | U+E0C0 | U+E0C1 | U+E0C2 | U+E0C3 | U+E0C4 | U+E0C5 | | |
 | ![U+E0C0](https://raw.githubusercontent.com/s417-lama/terminal-glyph-patcher/master/svg/cross.svg?sanitize=true) | ![U+E0C1](https://raw.githubusercontent.com/s417-lama/terminal-glyph-patcher/master/svg/cross_left.svg?sanitize=true) | ![U+E0C2](https://raw.githubusercontent.com/s417-lama/terminal-glyph-patcher/master/svg/cross_right.svg?sanitize=true) | ![U+E0C3](https://raw.githubusercontent.com/s417-lama/terminal-glyph-patcher/master/svg/cross_thin.svg?sanitize=true) | ![U+E0C4](https://raw.githubusercontent.com/s417-lama/terminal-glyph-patcher/master/svg/diamond.svg?sanitize=true) | ![U+E0C5](https://raw.githubusercontent.com/s417-lama/terminal-glyph-patcher/master/svg/diamond_thin.svg?sanitize=true) | | |
+
+## Tips to adjust position
+
+Sometimes powerline separators are misaligned because of the mismatch between fonts and terminal emulators.
+It depends on terminal emulators you use, the font size, the resolution of displays, and so on.
+So it is hard to create powerline fonts that will work well on every environment.
+
+You can adjust some parameters (`overlap` in `symbols` list, `y_scale` in `terminal-glyph-patcher.py`) to make it fit in your environment.
+If there is a gap between glyphs, try to increase `overlap` parameter of the glyph.
+If the glyph is smaller than the line height, try to increase `y_scale` parameter.
 
 # Reference
 
