@@ -1,5 +1,7 @@
 # Terminal Glyph Patcher
-Patch your own glyphs to your terminal fonts (e.g., extra powerline separators)
+Patch your own glyphs to your terminal fonts (e.g., extra powerline separators).
+
+Enjoy your original statusline in the terminal!
 
 ![statusline.png](https://raw.githubusercontent.com/wiki/s417-lama/terminal-glyph-patcher/images/statusline.png)
 
