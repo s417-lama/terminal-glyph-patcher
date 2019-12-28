@@ -3,7 +3,18 @@ Patch your own glyphs to your terminal fonts (e.g., extra powerline separators)
 
 ![statusline.png](https://raw.githubusercontent.com/wiki/s417-lama/terminal-glyph-patcher/images/statusline.png)
 
+## Characteristics
+
+- Your own **SVG** files (`.svg`) can be used to generate glyphs.
+    - Preset glyphs below are also pure SVG files.
+- Generated glyphs are always **half-width**.
+    - It is less likely to cause problems related with [ambiguous-width characters](http://www.unicode.org/reports/tr11/tr11-36.html).
+- The position of separator glyphs can be finely adjusted.
+
 # Preset Glyphs
+
+The glyphs below are included in `svg/` directory by default.
+These glyphs are pure SVG files.
 
 Basically it follows the layout convention of [Powerline Extra Symbols](https://github.com/ryanoasis/powerline-extra-symbols) (not exactly same, though).
 
