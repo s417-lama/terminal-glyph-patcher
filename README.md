@@ -97,9 +97,10 @@ Sometimes powerline separators are misaligned because of the mismatch between fo
 It depends on terminal emulators you use, the font size, the resolution of displays, and so on.
 So it is hard to create powerline fonts that will work well on every environment.
 
-You can adjust some parameters (`overlap` in `symbols` list, `y_scale` in `terminal-glyph-patcher.py`) to make it fit in your environment.
-If there is a gap between glyphs, try to increase `overlap` parameter of the glyph.
-If the glyph is smaller than the line height, try to increase `y_scale` parameter.
+You can adjust some parameters (`overlap` in `symbols` list, `y_scale` and `y_offset` in `terminal-glyph-patcher.py`) to make it fit in your environment.
+If there is a horizontal gap between glyphs, try to increase `overlap` parameter of each glyph.
+If glyphs are smaller than the line height, try to increase `y_scale` parameter.
+If glyphs are vertically misaligned, try to change `y_offset` parameter.
 
 # Reference
 

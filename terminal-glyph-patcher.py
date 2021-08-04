@@ -29,34 +29,35 @@ except ImportError:
 
 symbols = [
     # Right/left-aligned glyphs will have their advance width reduced in order to overlap the next glyph slightly
-    {'unicode': 0xe0b0, 'align': 'l', 'stretch': 'xy', 'overlap': 0.05, 'path': 'svg/arrow_right.svg'     },
+    {'unicode': 0xe0b0, 'align': 'l', 'stretch': 'xy', 'overlap': 0.04, 'path': 'svg/arrow_right.svg'     },
     {'unicode': 0xe0b1, 'align': 'l', 'stretch': 'xy', 'overlap': 0.05, 'path': 'svg/arrow_right_thin.svg'},
-    {'unicode': 0xe0b2, 'align': 'r', 'stretch': 'xy', 'overlap': 0.01, 'path': 'svg/arrow_left.svg'      },
-    {'unicode': 0xe0b3, 'align': 'r', 'stretch': 'xy', 'overlap': 0.01, 'path': 'svg/arrow_left_thin.svg' },
+    {'unicode': 0xe0b2, 'align': 'r', 'stretch': 'xy', 'overlap': 0.05, 'path': 'svg/arrow_left.svg'      },
+    {'unicode': 0xe0b3, 'align': 'r', 'stretch': 'xy', 'overlap': 0.05, 'path': 'svg/arrow_left_thin.svg' },
 
-    {'unicode': 0xe0b4, 'align': 'l', 'stretch': 'xy', 'overlap': 0.08, 'path': 'svg/circle_right.svg'     },
-    {'unicode': 0xe0b5, 'align': 'l', 'stretch': 'xy', 'overlap': 0.08, 'path': 'svg/circle_right_thin.svg'},
-    {'unicode': 0xe0b6, 'align': 'r', 'stretch': 'xy', 'overlap': 0.01, 'path': 'svg/circle_left.svg'      },
-    {'unicode': 0xe0b7, 'align': 'r', 'stretch': 'xy', 'overlap': 0.01, 'path': 'svg/circle_left_thin.svg' },
+    {'unicode': 0xe0b4, 'align': 'l', 'stretch': 'xy', 'overlap': 0.05, 'path': 'svg/circle_right.svg'     },
+    {'unicode': 0xe0b5, 'align': 'l', 'stretch': 'xy', 'overlap': 0.05, 'path': 'svg/circle_right_thin.svg'},
+    {'unicode': 0xe0b6, 'align': 'r', 'stretch': 'xy', 'overlap': 0.05, 'path': 'svg/circle_left.svg'      },
+    {'unicode': 0xe0b7, 'align': 'r', 'stretch': 'xy', 'overlap': 0.05, 'path': 'svg/circle_left_thin.svg' },
 
     {'unicode': 0xe0b8, 'align': 'l', 'stretch': 'xy', 'overlap': 0.05, 'path': 'svg/slant_left_bottom.svg'      },
     {'unicode': 0xe0b9, 'align': 'l', 'stretch': 'xy', 'overlap': 0.05, 'path': 'svg/slant_left_bottom_thin.svg' },
-    {'unicode': 0xe0ba, 'align': 'r', 'stretch': 'xy', 'overlap': 0.01, 'path': 'svg/slant_right_bottom.svg'     },
-    {'unicode': 0xe0bb, 'align': 'r', 'stretch': 'xy', 'overlap': 0.01, 'path': 'svg/slant_right_bottom_thin.svg'},
+    {'unicode': 0xe0ba, 'align': 'r', 'stretch': 'xy', 'overlap': 0.05, 'path': 'svg/slant_right_bottom.svg'     },
+    {'unicode': 0xe0bb, 'align': 'r', 'stretch': 'xy', 'overlap': 0.05, 'path': 'svg/slant_right_bottom_thin.svg'},
     {'unicode': 0xe0bc, 'align': 'l', 'stretch': 'xy', 'overlap': 0.05, 'path': 'svg/slant_left_top.svg'         },
     {'unicode': 0xe0bd, 'align': 'l', 'stretch': 'xy', 'overlap': 0.05, 'path': 'svg/slant_left_top_thin.svg'    },
-    {'unicode': 0xe0be, 'align': 'r', 'stretch': 'xy', 'overlap': 0.01, 'path': 'svg/slant_right_top.svg'        },
-    {'unicode': 0xe0bf, 'align': 'r', 'stretch': 'xy', 'overlap': 0.01, 'path': 'svg/slant_right_top_thin.svg'   },
+    {'unicode': 0xe0be, 'align': 'r', 'stretch': 'xy', 'overlap': 0.05, 'path': 'svg/slant_right_top.svg'        },
+    {'unicode': 0xe0bf, 'align': 'r', 'stretch': 'xy', 'overlap': 0.05, 'path': 'svg/slant_right_top_thin.svg'   },
 
     {'unicode': 0xe0c0, 'align': 'c', 'stretch': 'xy', 'overlap': 0   , 'path': 'svg/cross.svg'      },
     {'unicode': 0xe0c1, 'align': 'l', 'stretch': 'xy', 'overlap': 0.05, 'path': 'svg/cross_left.svg' },
-    {'unicode': 0xe0c2, 'align': 'r', 'stretch': 'xy', 'overlap': 0.01, 'path': 'svg/cross_right.svg'},
+    {'unicode': 0xe0c2, 'align': 'r', 'stretch': 'xy', 'overlap': 0.05, 'path': 'svg/cross_right.svg'},
     {'unicode': 0xe0c3, 'align': 'c', 'stretch': 'xy', 'overlap': 0   , 'path': 'svg/cross_thin.svg' },
 
     {'unicode': 0xe0c4, 'align': 'c', 'stretch': 'xy', 'overlap': 0   , 'path': 'svg/diamond.svg'     },
     {'unicode': 0xe0c5, 'align': 'c', 'stretch': 'xy', 'overlap': 0   , 'path': 'svg/diamond_thin.svg'},
 ]
-y_scale = 1.02
+y_scale = 1.01
+y_offset = -0.055
 
 # Handle command-line arguments
 parser = argparse.ArgumentParser(description='Terminal Glyph Patcher')
@@ -144,7 +145,7 @@ for font_path in args.fonts:
         sym_dim = get_glyph_dim(font[symbol['unicode']])
 
         # Center-align the glyph vertically
-        font_ycenter = font_dim['height'] / 2
+        font_ycenter = font_dim['height'] / 2 + font_dim['height'] * y_offset
         sym_ycenter  = sym_dim['height'] / 2
 
         # First move it to the ymax (top)
