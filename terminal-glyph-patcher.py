@@ -119,6 +119,10 @@ for font_path in args.fonts:
 
     # Create glyphs from symbol font
     for symbol in symbols:
+        # Clear existing glyphs in the target font
+        font.selection.select(symbol['unicode'])
+        font.clear()
+
         # Import svg glyph
         glyph = font.createChar(symbol['unicode'])
         glyph.importOutlines(symbol['path'])
